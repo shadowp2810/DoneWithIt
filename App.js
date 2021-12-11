@@ -1,38 +1,17 @@
 /*
-Now we allow user to tap on image.
+Now we talk about the button component.
 
-For Text component we have onPress prop,
-for Image there is no such prop.
+Each platform has a different way of presenting this button component.
+As the button component gets mapped to its native equivalent.
+We can change color that gets effected both platforms.
+      <Button
+        color={"orange"}
+        title="Click Me"
+        onPress={() => console.log("Button Tapped")}
+      />
 
-The Touchable comonents in react native are
-
-- TouchableHighlight
-- TouchableOpacity
-- TouchableWithoutFeedback
-
-The Touchable component we use
-depends on the kind of feedback we want to give users.
-
-We move image component inside TouchableWithoutFeedback.
-TouchableWithoutFeedback has events onPress, onLongPress
-
-      <TouchableWithoutFeedback onPress={() => console.log("Image Tapped")}>
-        <Image
-          blurRadius={10}
-          source={{
-            width: 200,
-            height: 300,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableWithoutFeedback>
-
-TouchableOpacity , the opacity gets reduced for fraction of second when touching.
-TouchableHighlight , the background gets darkend for fraction of second when touching.
-
-There are touchables specific to android.
-Its called TouchableNativeFeedback
-
+We can also create buttons with unique look and feel,
+which we look at later.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -46,22 +25,18 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   SafeAreaView,
+  Button,
 } from "react-native";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Hello React Native!</Text>
-      <TouchableOpacity onPress={() => console.log("Image Tapped")}>
-        <Image
-          blurRadius={10}
-          source={{
-            width: 200,
-            height: 300,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableOpacity>
+      <Button
+        color={"orange"}
+        title="Click Me"
+        onPress={() => console.log("Button Tapped")}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
