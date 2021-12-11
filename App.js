@@ -1,20 +1,25 @@
 /*
-In this lesson we will talk about aligning items in a container.
+If we add too many items in a flexDirection row or column,
+the new item added at end 
+and items at start will loose area on viewable screen.
 
-With this property justifyContent: "center",
-we can align items in the main or primary axis.
-As our flex direction is set to row, our main axis is horizontal.
-If flex direction was set to column, our items would be in center of vertical axis.
-With justifyContent we have flex-start by defaut, then flex-end, and center.
-We also have space-between, space-arround, space-evenly.
+To fix this we wrap the content.
+But when we enable wraping, alignItems behaves differently.
+If you have multiple lines,
+the alighnItems property determins alignment of items within each line.
+For 
+flexDirection: "row",
+justifyContent: "center",
+alignItems: "center",
+flexWrap: "wrap",
+within each line, items become vertically centered.
+Adding multiple items of different height, 
+all these items would be vertically centered.
+So with alignItems property 
+determins the alighnment of items along secondary axis within each line.
 
-With property alignItems: "center",
-we can align items in the secondary or cross axis.
-With baseline the base remains same for all views regardless of height difference. 
-With flex-end items appear at end of vertical axis, and flex-start at start of vertical axis.
-
-We use alignItems for whole container,
-alignSelf for individual item.
+To put all these items in ceter of screen, we use different property,
+called alignContent.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -32,9 +37,11 @@ export default function App() {
       style={{
         backgroundColor: "#fff",
         flex: 1,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
+        flexDirection: "row", //horizontal
+        justifyContent: "center", //entire content main
+        alignItems: "center", //within each line
+        alignContent: "center", //entire content corss
+        flexWrap: "wrap", //items stay on screen
         paddingTop:
           Platform.OS === "android" ? StatusBarNative.currentHeight : 0,
       }}
@@ -43,8 +50,7 @@ export default function App() {
         style={{
           backgroundColor: "dodgerblue",
           width: 100,
-          height: 200,
-          alignSelf: "flex-start",
+          height: 100,
         }}
       />
       <View
@@ -58,8 +64,21 @@ export default function App() {
         style={{
           backgroundColor: "tomato",
           width: 100,
-          height: 200,
-          alignSelf: "flex-end",
+          height: 100,
+        }}
+      />
+      <View
+        style={{
+          backgroundColor: "grey",
+          width: 100,
+          height: 100,
+        }}
+      />
+      <View
+        style={{
+          backgroundColor: "greenyellow",
+          width: 100,
+          height: 100,
         }}
       />
       <StatusBar style="auto" />
