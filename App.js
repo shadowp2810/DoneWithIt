@@ -1,57 +1,59 @@
 /*
-Let's talk about dimensions of components on screen.
+There are times we need to rotate our screen orientation
+and resize components accordingly.
 
-When we specify width: 150, height: 70 ,
-these numbers are DIPs or Density-Independent Pixels.
-Physical Pixels = DIPs \* Scale Factor
+Suppose we set width: "100%", height: "30%"
+Maybe this is a video player.
+Now in Landscape mode the size becomes weird.
+This is where we need to detect the orientation of screen and resize component accordingly.
 
-iPhone 4 can display 320*480 points.
-These points are abstract units and not actual pixels.
-The scale factor of iPhone 4 is 2x.
-That means every point contains 2 pixels.
-So screen resolution of iPhone 4 is 640*960 pixels.
-If width of our view is 150 (DIPs),
-it's actual width on iPhone is 150\*2 which is 300 pixels.
-Rougly arround half the screen width.
+To support different orientations we go to app.json.
+By default it is set to portrait.
+We set to default to support both modes.
 
-In contract iPhone 11 Pro Max can display 414*896 points.
-And with scale factor of 3x,
-the resolution is 1242*2688.
-The width of view on this iPhone is 150\*3 which is 450 pixels.
-So less than half screen width.
+To detect this orientation we use library hooks
+developed by react native community.
+Hooks are functions that bring extra functionality to function components.
+https://github.com/react-native-community/hooks
+All hooks start with use.
+We have
+useAccessibilityInfo , useAppState , useBackHandler , useCameraRoll ,
+useClipboard , useDimensions , useImageDimensions, useKeyboard ,
+useInteractionManager , useDeviceOrientation , useLayout
 
-What matters is by representing our numbers in DIPs,
-they look almost identical across different devices.
+we install
+`npm install @react-native-community/hooks`
 
-If we want to make sure width is exaclty half of screen we replace 150 with '50%'
-
-In some cases we want to fine tune size of component by size of screen.
-In those cases we use the Dimensions API.
-
-screen returns size of entire screen,
-window returns size of visible application window.
-On iOS diminsions are equal, only different on android.
-window size is a bit smaller than screen size.
-
-console.log(Dimensions.get("screen"));
-
-iPhone 13
-Object {
+with hook useDimensions, we get the correct dimensions of the screen,
+whether in portrait or landscape mode.
+This hook always returns the updated dimensions.
+This was a limitations in the Dimensions API in react-native.
+So this is the prefered way to get dimensions of screen
+if you support multiple orientations.
+console.log(useDimensions());
+"window": Object {
 "fontScale": 1,
 "height": 844,
 "scale": 3,
 "width": 390,
-}
-OnePlus 6
+},
+
+We also have another hook for detecting the screen orientation.
+useDeviceOrientation,
+console.log(useDeviceOrientation());
 Object {
-"fontScale": 1,
-"height": 810.6666666666666,
-"scale": 2.8125,
-"width": 384,
+"landscape": false,
+"portrait": true,
 }
 
-The problem with this API is it doesn't respond to dimension changes.
-So if user rotates device, the numbers don't get updated.
+We can destructure the landsape property from useDeviceOrientation
+const { landscape } = useDeviceOrientation();
+and have considional style
+height: landscape ? "100%" : "30%",
+
+The app we will be building won't be using landscape mode,
+so we set the property in app.json back to portrait.
+
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -64,16 +66,21 @@ import {
   Platform,
   StatusBar as StatusBarNative,
 } from "react-native";
+import {
+  useDimensions,
+  useDeviceOrientation,
+} from "@react-native-community/hooks";
 
 export default function App() {
-  console.log(Dimensions.get("window"));
+  const { landscape } = useDeviceOrientation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View
         style={{
           backgroundColor: "dodgerblue",
-          width: "50%",
-          height: 70,
+          width: "100%",
+          height: landscape ? "100%" : "30%",
         }}
       ></View>
       <StatusBar style="auto" />
