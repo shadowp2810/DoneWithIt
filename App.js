@@ -1,25 +1,20 @@
 /*
-If we add too many items in a flexDirection row or column,
-the new item added at end 
-and items at start will loose area on viewable screen.
+We have covered the essential properties of flex,
+but there are three others to know in case you come across them in others code.
 
-To fix this we wrap the content.
-But when we enable wraping, alignItems behaves differently.
-If you have multiple lines,
-the alighnItems property determins alignment of items within each line.
-For 
-flexDirection: "row",
-justifyContent: "center",
-alignItems: "center",
-flexWrap: "wrap",
-within each line, items become vertically centered.
-Adding multiple items of different height, 
-all these items would be vertically centered.
-So with alignItems property 
-determins the alighnment of items along secondary axis within each line.
+With flexBasis we can set size of item along primary axis.
+With flex direction as row, our primary axis is horizontal,
+setting flexbasis to 100, is equivalent to setting width to 100.
+If primary axis was vertical, setting flexBasis is equivalent to setting height.
 
-To put all these items in ceter of screen, we use different property,
-called alignContent.
+Setting flexGrow is same as setting flex property.
+flex: 1 and flexGrow: 1
+
+Setting flexShirk says if there are other items on screen,
+it can grow to maximum while keeping other items on screen.
+
+Flex is a shorthand for flexgrow and flexshrink.
+Setting , flex: -1 , to a negative number is same as using flexShrink.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -40,8 +35,6 @@ export default function App() {
         flexDirection: "row", //horizontal
         justifyContent: "center", //entire content main
         alignItems: "center", //within each line
-        alignContent: "center", //entire content corss
-        flexWrap: "wrap", //items stay on screen
         paddingTop:
           Platform.OS === "android" ? StatusBarNative.currentHeight : 0,
       }}
@@ -63,20 +56,6 @@ export default function App() {
       <View
         style={{
           backgroundColor: "tomato",
-          width: 100,
-          height: 100,
-        }}
-      />
-      <View
-        style={{
-          backgroundColor: "grey",
-          width: 100,
-          height: 100,
-        }}
-      />
-      <View
-        style={{
-          backgroundColor: "greenyellow",
           width: 100,
           height: 100,
         }}
