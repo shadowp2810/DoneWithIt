@@ -1,16 +1,32 @@
 import React from "react";
 import { Text, StyleSheet, Platform } from "react-native";
+import { useFonts } from "expo-font";
 
-function AppText({ children }) {
-  return <Text style={styles.text}>{children}</Text>;
+function AppHeading({ children }) {
+  let [fontsLoaded] = useFonts({
+    "Syncopate-Bold": require("../assets/fonts/Syncopate-Bold.ttf"),
+    "Syncopate-Regular": require("../assets/fonts/Syncopate-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <Text style={styles.textDefault}>{children}</Text>;
+  } else {
+    return <Text style={styles.textStyled}>{children}</Text>;
+  }
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 35,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+  textStyled: {
+    fontSize: 25,
+    fontFamily: "Syncopate-Bold",
+    lineHeight: Platform.OS === "android" ? null : null,
     textTransform: "capitalize",
+  },
+  textDefault: {
+    fontSize: 25,
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    lineHeight: Platform.OS === "android" ? null : null,
   },
 });
 
-export default AppText;
+export default AppHeading;
