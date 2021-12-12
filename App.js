@@ -1,18 +1,58 @@
 /*
-We are using similar colors codes
-in stylesheets throughout the application.
-We extract the color codes and put them in a seperate file like colors.js
-And have all the colors our application uses in a single place.
-So if we decide to rebrand our app tomorrow,
-we can do it in one place.
+In this section the styles will be inline,
+but in a real setting you should define it in stylesheets.
+
+<View
+  style={{
+    backgroundColor: "dodgerblue",
+    width: 100,
+    height: 100,
+    borderWidth: 10,
+    borderColor: "royalblue",
+    borderRadius: 10,
+    borderTopWidth: 20,
+    borderTopLeftRadius: 50,
+  }}
+></View>
+We can customize the top left, top right, bottom left, bottom right corners of border.
+    
+To draw a radius you need a radius that is atleast half the size of box.
+So for circle
+<View
+  style={{
+    backgroundColor: "dodgerblue",
+    width: 100,
+    height: 100,
+    borderWidth: 10,
+    borderColor: "royalblue",
+    borderRadius: 50,
+  }}
+></View>
 */
 
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
+import { View } from "react-native";
 
 export default function App() {
-  return <ViewImageScreen />;
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View
+        style={{
+          backgroundColor: "dodgerblue",
+          width: 100,
+          height: 100,
+          borderWidth: 10,
+          borderColor: "royalblue",
+          borderRadius: 50,
+        }}
+      ></View>
+    </View>
+  );
 }
