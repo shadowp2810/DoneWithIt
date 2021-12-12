@@ -1,43 +1,44 @@
 /*
-What is the difference between paddings and margin?
-Padding is the space inside a component, 
-Margin is the space arround it.
+To use custome fonts
+https://docs.expo.dev/guides/using-custom-fonts/
 
-Add Padding inside it.
-      <View
+fontFamily: "Courier" , is supported for iOS and not android.
+fontFamily: "Roboto" , is supported for android and not iOS.
+You must see supported system fonts and load by platform.
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "3%",
+      }}
+    >
+      <Text
         style={{
-          backgroundColor: "dodgerblue",
-          width: 100,
-          height: 100,
-          padding: 20,
-          paddingHorizontal: 10, //overwrite previous
-          paddingLeft: 30, //overwrite previous
+          // fontFamily: "Montserrat",
+          fontSize: 30,
+          fontStyle: "italic",
+          fontWeight: "600",
+          textTransform: "capitalize",
+          textDecorationLine: "line-through",
+          textAlign: "justify",
+          lineHeight: 60, //for spacing between lines
         }}
       >
-        <View
-          style={{
-            backgroundColor: "gold",
-            width: 50,
-            height: 50,
-          }}
-        ></View>
-      </View>
+        I love React Native! Aliqua officia nulla duis veniam qui dolor occaecat
+        commodo deserunt. Reprehenderit ipsum aliqua nulla ipsum. Cupidatat
+        excepteur culpa fugiat velit ex deserunt mollit sint laboris incididunt
+        minim enim ex.
+      </Text>
+    </View>
 
-Add Margin arround it.
-      <View
-        style={{
-          backgroundColor: "tomato",
-          width: 100,
-          height: 100,
-          margin: 20,
-        }}
-      ></View>
-
+In react native unline css we don't have styling inheritance.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function App() {
   return (
@@ -46,34 +47,26 @@ export default function App() {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        padding: "3%",
       }}
     >
-      <View
+      <Text
         style={{
-          backgroundColor: "dodgerblue",
-          width: 100,
-          height: 100,
-          padding: 20,
-          paddingHorizontal: 10, //overwrite previous
-          paddingLeft: 30, //overwrite previous
+          // fontFamily: "Montserrat",
+          fontSize: 30,
+          fontStyle: "italic",
+          fontWeight: "600",
+          textTransform: "capitalize",
+          textDecorationLine: "line-through",
+          textAlign: "justify",
+          lineHeight: 60, //for spacing between lines
         }}
       >
-        <View
-          style={{
-            backgroundColor: "gold",
-            width: 50,
-            height: 50,
-          }}
-        ></View>
-      </View>
-      <View
-        style={{
-          backgroundColor: "tomato",
-          width: 100,
-          height: 100,
-          margin: 20,
-        }}
-      ></View>
+        I love React Native! Aliqua officia nulla duis veniam qui dolor occaecat
+        commodo deserunt. Reprehenderit ipsum aliqua nulla ipsum. Cupidatat
+        excepteur culpa fugiat velit ex deserunt mollit sint laboris incididunt
+        minim enim ex.
+      </Text>
     </View>
   );
 }
