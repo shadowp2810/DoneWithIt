@@ -1,20 +1,14 @@
 /*
-We have covered the essential properties of flex,
-but there are three others to know in case you come across them in others code.
+Setting top, bottom, left, right,
+moves the position of the view relative to its original position,
+without effecting the position of views arround it.
+          top: -20,
 
-With flexBasis we can set size of item along primary axis.
-With flex direction as row, our primary axis is horizontal,
-setting flexbasis to 100, is equivalent to setting width to 100.
-If primary axis was vertical, setting flexBasis is equivalent to setting height.
+This happens because all views by default in react native use relative potioning.
+          position: "relative",
 
-Setting flexGrow is same as setting flex property.
-flex: 1 and flexGrow: 1
-
-Setting flexShirk says if there are other items on screen,
-it can grow to maximum while keeping other items on screen.
-
-Flex is a shorthand for flexgrow and flexshrink.
-Setting , flex: -1 , to a negative number is same as using flexShrink.
+Setting position to absolute, moves the position of view realative to entire screen.
+And as a result of its positioning the other views move around.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -44,6 +38,7 @@ export default function App() {
           backgroundColor: "dodgerblue",
           width: 100,
           height: 100,
+          top: -20,
         }}
       />
       <View
