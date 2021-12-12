@@ -1,33 +1,16 @@
 /*
-In this section the styles will be inline,
-but in a real setting you should define it in stylesheets.
+To apply shadows we have different properties for iOS and android.
 
-<View
-  style={{
-    backgroundColor: "dodgerblue",
-    width: 100,
-    height: 100,
-    borderWidth: 10,
-    borderColor: "royalblue",
-    borderRadius: 10,
-    borderTopWidth: 20,
-    borderTopLeftRadius: 50,
-  }}
-></View>
-We can customize the top left, top right, bottom left, bottom right corners of border.
-    
-To draw a radius you need a radius that is atleast half the size of box.
-So for circle
-<View
-  style={{
-    backgroundColor: "dodgerblue",
-    width: 100,
-    height: 100,
-    borderWidth: 10,
-    borderColor: "royalblue",
-    borderRadius: 50,
-  }}
-></View>
+In iOS to apply a shadow you need atleast 3 properties.
+shadowColor: "grey",
+shadowOffset: { width: 10, height: 10 },
+shadowOpacity: 1, //Between 0 - 1 for visibility
+
+Changing offset to width: 0 puts shadow below under the view, minus for left.
+
+With , shadowRadius: 10, we can make shadow softer.
+
+In android we only have , elevation: 10 , to set a kind of shadow.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -48,9 +31,11 @@ export default function App() {
           backgroundColor: "dodgerblue",
           width: 100,
           height: 100,
-          borderWidth: 10,
-          borderColor: "royalblue",
-          borderRadius: 50,
+          shadowColor: "grey",
+          shadowOffset: { width: 0, height: 10 },
+          shadowOpacity: 1,
+          shadowRadius: 10,
+          elevation: 10, //android's only shadow effect
         }}
       ></View>
     </View>
