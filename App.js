@@ -1,15 +1,5 @@
 /*
-https://docs.expo.dev/versions/latest/react-native/switch/
-
-Switch is a component we use to capture a boolean value.
-It has a different look on ios and android.
-
-Switch on ios is on left side, on android is on right side.
-
-      <Switch value={isNew} onValueChange={(newValue) => setIsNew(newValue)} />
-
-We set the state variable using value prop 
-and then handle the onValueChange envent to update state variable.
+Look and feel of a custom picker
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -17,12 +7,14 @@ import React, { useState } from "react";
 
 import Screen from "./app/components/Screen";
 import { Switch } from "react-native";
+import AppPicker from "./app/components/AppPicker";
+import AppTextInput from "./app/components/AppTextInput";
 
 export default function App() {
-  const [isNew, setIsNew] = useState(false);
   return (
     <Screen>
-      <Switch value={isNew} onValueChange={(newValue) => setIsNew(newValue)} />
+      <AppPicker icon="apps" placeholder="Category" />
+      <AppTextInput icon="email" placeholder="E-mail" />
     </Screen>
   );
 }
