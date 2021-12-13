@@ -8,7 +8,7 @@ function AppText({ children, style: passedStyles }) {
     "Syncopate-Regular": require("../assets/fonts/Syncopate-Regular.ttf"),
   });
 
-  if (fontsLoaded) {
+  if (!fontsLoaded) {
     return <Text style={[styles.textDefault, passedStyles]}>{children}</Text>;
   } else {
     return <Text style={[styles.textStyled, passedStyles]}>{children}</Text>;

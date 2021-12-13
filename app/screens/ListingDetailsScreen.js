@@ -5,6 +5,8 @@ import AppHeading from "../components/AppHeading";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
+import ListItem from "../components/ListItem";
+
 function ListingDetailsScreen(props) {
   return (
     <View>
@@ -12,6 +14,13 @@ function ListingDetailsScreen(props) {
       <View style={styles.detailsContainer}>
         <AppHeading style={styles.title}>Red jacket for sale</AppHeading>
         <AppText style={styles.price}>$100</AppText>
+        <View style={styles.userContainer}>
+          <ListItem
+            image={require("../assets/mosh.jpg")}
+            title="Mosh Hamedani"
+            subTitle="9 listings"
+          />
+        </View>
       </View>
     </View>
   );
@@ -28,8 +37,11 @@ const styles = StyleSheet.create({
   title: {},
   price: {
     color: colors.secondary,
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: 23,
+    fontWeight: "600",
+  },
+  userContainer: {
+    marginVertical: "7%",
   },
 });
 
