@@ -1,11 +1,12 @@
 /*
-
+Build Button Component
 */
 
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View } from "react-native";
-import AppTextSystem from "./app/components/AppTextSystem/AppTextSystem";
+
+import AppButton from "./app/components/AppButton";
 
 export default function App() {
   return (
@@ -17,7 +18,7 @@ export default function App() {
         padding: "3%",
       }}
     >
-      <AppTextSystem>Hi there, this is react native.</AppTextSystem>
+      <AppButton title="Login" onPress={() => console.log("Tapped")} />
     </View>
   );
 }

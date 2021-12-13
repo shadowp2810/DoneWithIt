@@ -2,16 +2,20 @@ import React from "react";
 import { Text, StyleSheet, Platform } from "react-native";
 import { useFonts } from "expo-font";
 
-function AppText({ children }) {
+function AppText({ children, style: passedStyles }) {
   let [fontsLoaded] = useFonts({
     "Jura-Medium": require("../assets/fonts/Jura-Medium.ttf"),
     "Syncopate-Regular": require("../assets/fonts/Syncopate-Regular.ttf"),
   });
 
-  if (!fontsLoaded) {
-    return <Text style={styles.textDefault}>{children}</Text>;
+  if (fontsLoaded) {
+    return (
+      <Text style={[styles.textDefault, { ...passedStyles }]}>{children}</Text>
+    );
   } else {
-    return <Text style={styles.textStyled}>{children}</Text>;
+    return (
+      <Text style={[styles.textStyled, { ...passedStyles }]}>{children}</Text>
+    );
   }
 }
 
