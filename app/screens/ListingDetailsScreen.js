@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 import AppHeading from "../components/AppHeading";
 import AppText from "../components/AppText";
-import colors from "../config/colors";
+import defaultStyles from "../config/styles";
 
 import ListItem from "../components/ListItem";
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   title: {},
   price: {
-    color: colors.secondary,
+    color: defaultStyles.colors.secondary,
     fontSize: 23,
     fontWeight: "600",
   },

@@ -5,7 +5,6 @@ import { useFonts } from "expo-font";
 function AppText({ children, style: passedStyles }) {
   let [fontsLoaded] = useFonts({
     "Jura-VariableFont_wght": require("../assets/fonts/Jura-VariableFont_wght.ttf"),
-    "Syncopate-Regular": require("../assets/fonts/Syncopate-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
