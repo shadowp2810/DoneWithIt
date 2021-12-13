@@ -9,13 +9,9 @@ function AppText({ children, style: passedStyles }) {
   });
 
   if (fontsLoaded) {
-    return (
-      <Text style={[styles.textDefault, { ...passedStyles }]}>{children}</Text>
-    );
+    return <Text style={[styles.textDefault, passedStyles]}>{children}</Text>;
   } else {
-    return (
-      <Text style={[styles.textStyled, { ...passedStyles }]}>{children}</Text>
-    );
+    return <Text style={[styles.textStyled, passedStyles]}>{children}</Text>;
   }
 }
 
