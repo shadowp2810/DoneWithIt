@@ -1,9 +1,10 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
+import ListItemSeperator from "../components/ListItemSeperator";
 
 const messages = [
   {
@@ -33,6 +34,7 @@ function MessagesScreen(props) {
             image={item.image}
           />
         )}
+        ItemSeparatorComponent={ListItemSeperator}
       />
       <StatusBar style="auto" />
     </Screen>
