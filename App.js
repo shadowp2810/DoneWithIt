@@ -1,5 +1,5 @@
 /*
-Look and feel of a custom picker
+Tapping on AppPicker should open a modal box.
 */
 
 import { StatusBar } from "expo-status-bar";
