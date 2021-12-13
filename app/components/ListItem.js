@@ -1,5 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  Platform,
+} from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import AppText from "./AppText";
@@ -10,14 +16,14 @@ function ListItem({
   title,
   subTitle,
   onPress,
-  ImageComponent,
+  IconComponent,
   renderRightActions,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.container}>
-          {ImageComponent}
+          {IconComponent}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{title}</AppText>
@@ -33,23 +39,24 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 15,
+    backgroundColor: colors.white,
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    marginRight: "2%",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
   },
   detailsContainer: {
     marginLeft: 10,
     justifyContent: "center",
+    top: Platform.OS === "android" ? -2.5 : null,
   },
   title: {
     fontSize: 20,
     fontWeight: "600",
   },
   subTitle: {
-    marginTop: "1%",
+    marginTop: "0%",
     fontWeight: "300",
     color: colors.medium,
   },
