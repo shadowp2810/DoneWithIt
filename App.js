@@ -1,19 +1,24 @@
 /*
-Tapping on AppPicker should open a modal box.
+We need modal screen to display items.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
 import Screen from "./app/components/Screen";
-import { Switch } from "react-native";
 import AppPicker from "./app/components/AppPicker";
 import AppTextInput from "./app/components/AppTextInput";
+
+const categories = [
+  { label: "Furniture", value: 2 },
+  { label: "Clothing", value: 5 },
+  { label: "Cameras", value: 4 },
+];
 
 export default function App() {
   return (
     <Screen>
-      <AppPicker icon="apps" placeholder="Category" />
+      <AppPicker items={categories} icon="apps" placeholder="Category" />
       <AppTextInput icon="email" placeholder="E-mail" />
     </Screen>
   );
