@@ -1,5 +1,6 @@
 /*
-Now we create a reusable component for rendering error messages.
+We display error message only if fild is touched.
+touched is an object similar to errors object. 
 */
 
 import { StatusBar } from "expo-status-bar";
