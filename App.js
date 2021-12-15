@@ -1,8 +1,9 @@
 /*
-Everytime we add a button, 
-we have to set it's onPress prop to handlesubmit.
-This is repetitive.
-We we encapsulate it inside a resuable component.
+Everytime we use formik, 
+we have to pass a function and wrap our components with a fragment. 
+This is ugly and unnecesary.
+We want to use this component as a child of formik.
+We use children prop to get children and render it inside.
 */
 
 import { StatusBar } from "expo-status-bar";
