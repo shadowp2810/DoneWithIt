@@ -1,29 +1,21 @@
 /*
-Currently we have just fields in our form, 
-but as we start adding more, our code gets complex.
-For every field we have to have a state variable,
-and this can be painful.
-So we use a popular library called Formik.
-Formik takes care of all the complexity of building forms. 
-It keeps track of form names and gives us validation out of the box.
-Works with react and react native.
-`npm i formik@2.1.4`
-It is a named export.
-import { Formik } from "formik";
-handleChange, handleSubmit are functions formik gives us 
-and with it we can keep track of state.
-Our function should return a jsx expression.
-handleChange is used for
-              onChangeText={(text) => setEmail(text)}
-              onChangeText={(text) => setPassword(text)}
-so we rewrite as 
-              onChangeText={handleChange("email")}
-              onChangeText={handleChange("password")}
-<AppButton title="Login" onPress={handleSubmit} /> calls
-        onSubmit={(values) => console.log(values)}
-
-With this we let formik keep track of state 
-so we don't need useState anymore.
+To implement validation we will use a popular library called yup.
+We used another library called Joi in the react and node course.
+Here we are using yup because it has built in support for formik.
+`npm i yup@0.28.5`
+import * as Yup from "yup";
+Defined outside function component 
+because we don't want object to be redefined 
+everytime our function is rerendered.
+Yup has different methods for validation.
+Yup.object(),Yup.string(),Yup.number(), etc.
+We use shape method to define shape of object.
+    email: Yup.string().required().email()
+With this we don't have to write reqular expression to validate email,
+we can change validation method to build a complex schema.
+In formik we specify validationSchema={validationSchema}
+In formik we also have errors function.
+            <AppText style={{ color: "red" }}>{errors.email}</AppText>
 
 */
 
