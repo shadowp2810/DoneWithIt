@@ -1,6 +1,7 @@
 /*
-We need to handle long text in a list item.
-We need to set numeber of lines to one.
+To troubleshoot the area a view takes up, 
+apply a background color to it.
+Then you know where to apply flex to take up space.
 */
 
 import { StatusBar } from "expo-status-bar";
