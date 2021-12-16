@@ -1,7 +1,6 @@
 /*
-To troubleshoot the area a view takes up, 
-apply a background color to it.
-Then you know where to apply flex to take up space.
+Add a jsconfig.json file to root directory to fix auto import 
+issue, as by defauly vscode think its a typescript project.
 */
 
 import { StatusBar } from "expo-status-bar";
