@@ -1,6 +1,8 @@
 /*
-Add a jsconfig.json file to root directory to fix auto import 
-issue, as by defauly vscode think its a typescript project.
+We don't want to set the width to 100% all the time.
+Expecially for textboxes that take up 
+all space but are only few charecters long. 
+By default we set 100%, but unless a value is passed.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -10,7 +12,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
-  return <MessagesScreen />;
+  return <ListingEditScreen />;
 }
 
 // <View
