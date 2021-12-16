@@ -1,5 +1,6 @@
 /*
-Style AppTextInput AppPicker placeholder.
+We need to handle long text in a list item.
+We need to set numeber of lines to one.
 */
 
 import { StatusBar } from "expo-status-bar";
