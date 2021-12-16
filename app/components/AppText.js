@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 
 function AppText({ children, style: passedStyles }) {
   let [fontsLoaded] = useFonts({
+    "Jura-BOLD": require("../assets/fonts/Jura-Bold.ttf"),
     "Jura-VariableFont_wght": require("../assets/fonts/Jura-VariableFont_wght.ttf"),
   });
 
@@ -17,7 +18,7 @@ function AppText({ children, style: passedStyles }) {
 const styles = StyleSheet.create({
   textStyled: {
     fontSize: 18,
-    fontFamily: "Jura-VariableFont_wght",
+    fontFamily: "Jura-BOLD",
     lineHeight: Platform.OS === "android" ? null : null,
   },
   textDefault: {
