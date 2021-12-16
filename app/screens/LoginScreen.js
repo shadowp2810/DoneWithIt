@@ -1,12 +1,9 @@
 import React from "react";
 import { Image, StyleSheet } from "react-native";
-import { Formik } from "formik";
 import * as Yup from "yup";
 
-import AppForm from "../components/AppForm";
-import AppFormField from "../components/AppFormField";
 import Screen from "../components/Screen";
-import SubmitButton from "../components/SubmitButton";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 /*
 Defined outside function component 
