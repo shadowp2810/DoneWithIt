@@ -3,8 +3,8 @@ import { View, StyleSheet, Image } from "react-native";
 
 import defaultStyles from "../config/styles";
 
-import AppText from "./AppText";
-import AppHeading from "./AppHeading";
+import AppText from "./Text";
+import AppHeading from "./Heading";
 
 function Card({ title, subTitle, image }) {
   return (

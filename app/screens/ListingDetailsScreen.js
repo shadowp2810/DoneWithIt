@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 
-import AppHeading from "../components/AppHeading";
-import AppText from "../components/AppText";
+import AppHeading from "../components/Heading";
+import AppText from "../components/Text";
 import defaultStyles from "../config/styles";
 
 import { ListItem } from "../components/lists";

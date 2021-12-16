@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import AppText from "./AppText";
+
+import AppText from "./Text";
 import Icon from "./Icon";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 //same API as PickerItem
 function CategoryPickerItem({ item, onPress }) {

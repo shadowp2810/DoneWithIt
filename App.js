@@ -1,9 +1,4 @@
 /*
-PickerItemComponent needs two props, label and onPress,
-For <PickerItemComponent we set prop item={item},
-so it only makes sence in context of category picker component.
-
-
 
 */
 
@@ -12,9 +7,10 @@ import React, { useState } from "react";
 
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
+import AccountScreen from "./app/screens/AccountScreen";
 
 export default function App() {
-  return <ListingEditScreen />;
+  return <AccountScreen />;
 }
 
 // <View
