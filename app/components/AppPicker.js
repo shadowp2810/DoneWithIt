@@ -22,6 +22,7 @@ function AppPicker({
   onSelectItem,
   width = "100%",
   PickerItemComponent = PickerItem,
+  numberOfColumns = 1,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -50,13 +51,15 @@ function AppPicker({
         </View>
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
-        <Screen>
+        <Screen style={styles.modalScreen}>
           <AppButton title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
               <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);
@@ -89,6 +92,9 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+  },
+  modalScreen: {
+    backgroundColor: defaultStyles.colors.light,
   },
 });
 

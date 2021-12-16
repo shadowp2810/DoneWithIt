@@ -19,9 +19,52 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Camera", value: 3 },
+  {
+    icon: "floor-lamp",
+    label: "Furniture",
+    value: 1,
+  },
+  {
+    icon: "car",
+    label: "Cars",
+    value: 2,
+  },
+  {
+    icon: "camera",
+    label: "Cameras",
+    value: 3,
+  },
+  {
+    icon: "cards",
+    label: "Games",
+    value: 4,
+  },
+  {
+    icon: "shoe-heel",
+    label: "Clothing",
+    value: 5,
+  },
+  {
+    icon: "basketball",
+    label: "Sports",
+    value: 6,
+  },
+  {
+    icon: "headphones",
+    label: "Movies & Music",
+    value: 7,
+  },
+  {
+    icon: "book-open-variant",
+    label: "Books",
+    value: 8,
+  },
+  {
+    backgroundColor: "#778ca3",
+    icon: "application",
+    label: "Other",
+    value: 9,
+  },
 ];
 
 function ListingEditScreen() {
@@ -48,6 +91,7 @@ function ListingEditScreen() {
         <Picker
           items={categories}
           name="category"
+          numberOfColumns={3}
           PickerItemComponent={CategoryPickerItem}
           placeholder="Category"
           width="50%"

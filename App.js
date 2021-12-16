@@ -1,19 +1,10 @@
 /*
-Make picker screen look preetier with icons and color.
-We pass PickerItemComponent,
-where first letter of every word is capitalised,
-so we pass component here.
-In AppPicker function we say that if it is not specified we use PickerItem,
-PickerItemComponent = PickerItem,
-<PickerItemComponent
-In AppFormPicker function we say in param PickerItemComponent,
-and <AppPicker, has  PickerItemComponent={PickerItemComponent}
-In ListingEditScreen we take AppFormPicker as <Picker, takes PickerItemComponent={CategoryPickerItem}
-So we create new component CategoryPickerItem.
-For now we have it return null.
-This is called flexible architecture.
-If items are designed properly, 
-you can always replace them, combine them.
+PickerItemComponent needs two props, label and onPress,
+For <PickerItemComponent we set prop item={item},
+so it only makes sence in context of category picker component.
+
+
+
 */
 
 import { StatusBar } from "expo-status-bar";
