@@ -1,8 +1,19 @@
 /*
-We don't want to set the width to 100% all the time.
-Expecially for textboxes that take up 
-all space but are only few charecters long. 
-By default we set 100%, but unless a value is passed.
+Make picker screen look preetier with icons and color.
+We pass PickerItemComponent,
+where first letter of every word is capitalised,
+so we pass component here.
+In AppPicker function we say that if it is not specified we use PickerItem,
+PickerItemComponent = PickerItem,
+<PickerItemComponent
+In AppFormPicker function we say in param PickerItemComponent,
+and <AppPicker, has  PickerItemComponent={PickerItemComponent}
+In ListingEditScreen we take AppFormPicker as <Picker, takes PickerItemComponent={CategoryPickerItem}
+So we create new component CategoryPickerItem.
+For now we have it return null.
+This is called flexible architecture.
+If items are designed properly, 
+you can always replace them, combine them.
 */
 
 import { StatusBar } from "expo-status-bar";
