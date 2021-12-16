@@ -1,5 +1,5 @@
 /*
-Build ListingEditScreen and AppFormPicker
+Style AppTextInput AppPicker placeholder.
 */
 
 import { StatusBar } from "expo-status-bar";
