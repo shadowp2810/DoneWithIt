@@ -5,7 +5,7 @@ import AppHeading from "../components/AppHeading";
 import AppText from "../components/AppText";
 import defaultStyles from "../config/styles";
 
-import ListItem from "../components/ListItem";
+import { ListItem } from "../components/lists";
 
 function ListingDetailsScreen(props) {
   return (

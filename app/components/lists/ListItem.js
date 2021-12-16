@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import AppText from "./AppText";
-import defaultStyles from "../config/styles";
+import AppText from "../AppText";
+import defaultStyles from "../../config/styles";
 
 function ListItem({
   image,
@@ -40,6 +40,7 @@ function ListItem({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     flexDirection: "row",
     padding: 15,
     backgroundColor: defaultStyles.colors.white,
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   detailsContainer: {
+    flex: 1,
     marginLeft: 10,
     justifyContent: "center",
     top: Platform.OS === "android" ? -2.5 : null,

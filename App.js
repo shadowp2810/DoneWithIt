@@ -11,15 +11,17 @@ We create an index.js file,
 import all the components and re-export them.
 With this we can easily import the form component in other components.
 We can now remove three import statements from LoginForm. 
+
+We do same with lists.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
-import LoginScreen from "./app/screens/LoginScreen";
+import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
-  return <LoginScreen />;
+  return <MessagesScreen />;
 }
 
 // <View

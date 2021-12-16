@@ -3,9 +3,11 @@ import { StatusBar } from "expo-status-bar";
 import { View, FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
-import ListItemSeperator from "../components/ListItemSeperator";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
+import {
+  ListItem,
+  ListItemSeperator,
+  ListItemDeleteAction,
+} from "../components/lists";
 
 const initialMessages = [
   {
@@ -34,36 +36,38 @@ function MessagesScreen(props) {
   };
 
   return (
-    <Screen>
-      <FlatList
-        data={messages}
-        keyExtractor={(message) => message.id.toString()}
-        renderItem={({ item }) => (
-          <ListItem
-            title={item.title}
-            subTitle={item.description}
-            image={item.image}
-            onPress={() => console.log("Message Selected.", item)}
-            renderRightActions={() => (
-              <ListItemDeleteAction onPress={() => handleDelete(item)} />
-            )}
-          />
-        )}
-        ItemSeparatorComponent={ListItemSeperator}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setMessages([
-            {
-              id: 3,
-              title: "T3",
-              description: "D3",
-              image: require("../assets/mosh.jpg"),
-            },
-          ]);
-        }}
-      />
+    <>
+      <Screen>
+        <FlatList
+          data={messages}
+          keyExtractor={(message) => message.id.toString()}
+          renderItem={({ item }) => (
+            <ListItem
+              title={item.title}
+              subTitle={item.description}
+              image={item.image}
+              onPress={() => console.log("Message Selected.", item)}
+              renderRightActions={() => (
+                <ListItemDeleteAction onPress={() => handleDelete(item)} />
+              )}
+            />
+          )}
+          ItemSeparatorComponent={ListItemSeperator}
+          refreshing={refreshing}
+          onRefresh={() => {
+            setMessages([
+              {
+                id: 3,
+                title: "T3",
+                description: "D3",
+                image: require("../assets/mosh.jpg"),
+              },
+            ]);
+          }}
+        />
+      </Screen>
       <StatusBar style="auto" />
-    </Screen>
+    </>
   );
 }
 
