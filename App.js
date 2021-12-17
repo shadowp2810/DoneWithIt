@@ -1,59 +1,60 @@
 /*
-When launching image library in ImageInput
-      const result = await ImagePicker.launchImageLibraryAsync();
-we want to pass an configuration object.
-We use         
-mediaTypes: ImagePicker.MediaTypeOptions.Images,
-so only images can be selected
-quality: 0.5,
-which is between 0 and 1.
-When we upload to server 
-we don't want to deal with a large upload.
-In
-      if (!result.cancelled) setImageUri(result.uri);
-we are trying to update our local state variable,
-but in this component we already have a prop called imageUri.
-It doesn't make sence to have a prop 
-and state variable with same purpose.
-So the component that uses our image input should be responsible
-for maintaing state. So we add a second prop onChangeImage.
-Which is the event this component is going to raise.
-So when the user selects an image, we are going to call onChangeImage,
-and notify the consumer of this component that the image is changed,
-and we would pass the uri to that image.
-In <ImageInput below we handle the onChangeImage event,
-set it to a function which takes the uri of the image,
-and this is where we update the state, setImageUri(uri),
-giving it the uri.
+Now we build a component for selecting multiple images.
+We build ImageInputList.
+We want to lay it horizontally so flexDirection: row.
+The props it takes should be a collection of imageUris.
+In the view each array value is mapped to an ImageInput.
+Currently we don't have functionality to replace an image,
+so if we have an image inside an image input and change event is raised,
+that means user has deleted that image,
+so here inside view where values are mapped, we should handle deletion.
+Just like the ImageInput component we don't want to maintain local state here,
+we want to have the state somewhere else, inside our form.
+So we add two more props, onRemoveImage, onAddImage,
+so adding or removing an image, rasises three events.
+Since we are using the map method we set the key prop to uri of the image.
+After this ImageInput, we are always going to have an ImageInput to add new images.
+We rename state imageUri to imageUris as we are dealing with multiple.
 
-Back to our component,
-if we don't have an image, we show image library.
-Otherwise we show an alert and ask if we want to delete an image.
-Alert.alert("Delete", "Are you sure you want to delete this image?", [
-        { text: "Yes", onPress: () => onChangeImage(null) },
-        { text: "No" },
-      ]);
-Where the array of button are Yes and No.
+Whenever you see pattern
+        onAddImage={uri=>handleAdd(uri)}
+where you have a parameter, that you call and function and pass a parameter,
+you can simplify code to simply use name of function.
+        onAddImage={handleAdd}
 
-We move the useEffect and its async function to ImageInput.
-useEffect with empty array is only called once.
+Using spread operator we take copy of aray and add uri
+    setImageUris([...imageUris, uri])
 
+To get all uris exept the one we get
+    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
+
+    To add padding between the items in list,
+    we wrap it in a view, and move the key prop to it because it is the container.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
 import Screen from "./app/components/Screen";
-import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState();
+  const [imageUris, setImageUris] = useState([]);
+
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri]);
+  };
+
+  const handleRemove = (uri) => {
+    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
+  };
 
   return (
     <Screen>
-      <ImageInput
-        imageUri={imageUri}
-        onChangeImage={(uri) => setImageUri(uri)}
+      <ImageInputList
+        imageUris={imageUris}
+        onAddImage={handleAdd}
+        onRemoveImage={handleRemove}
       />
     </Screen>
   );
