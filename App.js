@@ -1,21 +1,37 @@
 /*
-First we study the image picker in isolation.
-In class components we have componentDidMouth method.
-In functional component we have useEffect hook.
-Function useEffect(() => {}) gets executed 
-everytime component gets rendered.
-We don't want to keep asking the user permission
-and want to only do this first time component gets rendered.
-useEffect(() => {}, []) means function get executed only once
-as it is not dependednt on any variables.
-So this is equivalent to componentDidMount.
-ImagePicker.requestCameraPermissionsAsync()
-as it is an async method we need to await it.
-So when promise is resolved we get this await object.
-useEffect function cannot accept a function that returns a promise,
-and we can only return a function, which is used for cleaning up.
-So when comopnent gets unmounted, this function gets executed.
-So useEffect cannot be marked async.
+We will see how to use permissions api to get user permissions.
+
+"expo-permissions has been deprecated in favor 
+ of module-specific permissions methods 
+ You should migrate from using Permissions.askAsync 
+ and Permissions.getAsync to the permissions methods 
+ exported by modules that require the permissions.
+ For example: you should replace calls 
+ to Permissions.askAsync(Permissions.CAMERA) 
+ with Camera.requestPermissionsAsync()"
+
+import * as Location from 'expo-location';
+
+let { status } = await Location.requestForegroundPermissionsAsync();
+if (status !== 'granted') {
+  console.log('Permission to access location was denied');
+  return;
+}
+
+  [CAMERA]: 'expo-camera',
+  [CAMERA_ROLL]: 'expo-media-library',
+  [MEDIA_LIBRARY]: 'expo-media-library',
+  [MEDIA_LIBRARY_WRITE_ONLY]: 'expo-media-library',
+  [AUDIO_RECORDING]: 'expo-av',
+  [LOCATION]: 'expo-location',
+  [USER_FACING_NOTIFICATIONS]: 'expo-notifications',
+  [NOTIFICATIONS]: 'expo-notifications',
+  [CONTACTS]: 'expo-contacts',
+  [CALENDAR]: 'expo-calendar',
+  [REMINDERS]: 'expo-calendar',
+  [SYSTEM_BRIGHTNESS]: 'expo-brightness',
+  [MOTION]: 'expo-sensors',
+The request method entirely uses the request API.
 
 */
 
