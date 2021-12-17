@@ -1,46 +1,40 @@
 /*
-React Native doesn't give us much in terms of accessing native device feautures.
-
-https://reactnative.dev/docs/alert
-On left side we see the core APIs
-and there aren't many.
-The other feautres like camera, context and location are not avaiable in core react native.
-
-With 3rd party libraries from react native community like react native image picker
-and with this we can access the camera.
-Most of these require additional setup for ios or android projects.
-Our options are to eject the reactnative app and continue work for each platform,
-or we can use expo libraries.
-Expo is a great productivity tool,
-we can get more done in less time.
-
-https://docs.expo.dev/versions/latest/
-Calender, Camera, Contacts and so on.
-These components are easy to use and well documented.
-This list keeps growing as expo is under active development.
-
-Before using any component have a look at Platform Compatibility table.
-
-https://docs.expo.dev/versions/v44.0.0/sdk/imagepicker/
-expo-image-picker provides access to the system's UI
-for selecting images and videos from the phone's library or taking a photo with the camera.
-
-`expo install expo-image-picker`
-
-This component is copatible on all platforms.
-
-When we want to acess sensitive information for a user,
-we need thier permission, which we will look at next.
+First we study the image picker in isolation.
+In class components we have componentDidMouth method.
+In functional component we have useEffect hook.
+Function useEffect(() => {}) gets executed 
+everytime component gets rendered.
+We don't want to keep asking the user permission
+and want to only do this first time component gets rendered.
+useEffect(() => {}, []) means function get executed only once
+as it is not dependednt on any variables.
+So this is equivalent to componentDidMount.
+ImagePicker.requestCameraPermissionsAsync()
+as it is an async method we need to await it.
+So when promise is resolved we get this await object.
+useEffect function cannot accept a function that returns a promise,
+and we can only return a function, which is used for cleaning up.
+So when comopnent gets unmounted, this function gets executed.
+So useEffect cannot be marked async.
 
 */
 
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+import Screen from "./app/components/Screen";
 
 export default function App() {
-  return <ListingEditScreen />;
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access library.");
+  };
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+  return <Screen></Screen>;
 }
 
 // <View
