@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 
-import defaultStyles from "../config/styles";
+import defaultStyles from "../config/defaultStyles";
 
 import AppText from "./Text";
 import AppHeading from "./Heading";

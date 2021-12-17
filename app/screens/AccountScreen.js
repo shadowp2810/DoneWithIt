@@ -4,7 +4,7 @@ import { View, StyleSheet, FlatList } from "react-native";
 import Screen from "../components/Screen";
 import { ListItem, ListItemSeperator } from "../components/lists";
 import Icon from "../components/Icon";
-import defaultStyles from "../config/styles";
+import defaultStyles from "../config/defaultStyles";
 
 const menuItems = [
   {

@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 import AppHeading from "../components/Heading";
 import AppText from "../components/Text";
-import defaultStyles from "../config/styles";
+import defaultStyles from "../config/defaultStyles";
 
 import { ListItem } from "../components/lists";
 

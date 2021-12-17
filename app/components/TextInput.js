@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { useFonts } from "expo-font";
 
-import defaultStyles from "../config/styles";
+import defaultStyles from "../config/defaultStyles";
 
 function AppTextInput({ icon, width = "100%", ...otherProps }) {
   let [fontsLoaded] = useFonts({

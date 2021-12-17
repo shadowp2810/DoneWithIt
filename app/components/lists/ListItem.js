@@ -10,7 +10,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import AppText from "../Text";
-import defaultStyles from "../../config/styles";
+import defaultStyles from "../../config/defaultStyles";
 
 function ListItem({
   image,

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../config/styles";
+import defaultStyles from "../config/defaultStyles";
 import AppText from "./Text";
 import AppButton from "./Button";
 import Screen from "./Screen";

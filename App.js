@@ -1,16 +1,6 @@
 /*
-Accessing the Image Library. 
-    ImagePicker.launchImageLibraryAsync
-brings up the image library window to slect image.
+We conditionally render icon or image in ImageInput.
 
-result object has a few properties.
-cancelled is a boolean property, 
-and if user doesn't select image cancelled is true.
-uri is the full path to image.
-
-Using native features is easy with expo,
-you just have to install a library 
-that imports an object with few methods. 
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -19,6 +9,7 @@ import { Button, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import Screen from "./app/components/Screen";
+import ImageInput from "./app/components/ImageInput";
 
 export default function App() {
   const [imageUri, setImageUri] = useState();
@@ -45,6 +36,7 @@ export default function App() {
     <Screen>
       <Button title="Select Image" onPress={selectImage} />
       <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+      <ImageInput imageUri={imageUri} />
     </Screen>
   );
 }
