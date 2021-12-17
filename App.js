@@ -1,47 +1,28 @@
 /*
-We will see how to use permissions api to get user permissions.
+Accessing the Image Library. 
+    ImagePicker.launchImageLibraryAsync
+brings up the image library window to slect image.
 
-"expo-permissions has been deprecated in favor 
- of module-specific permissions methods 
- You should migrate from using Permissions.askAsync 
- and Permissions.getAsync to the permissions methods 
- exported by modules that require the permissions.
- For example: you should replace calls 
- to Permissions.askAsync(Permissions.CAMERA) 
- with Camera.requestPermissionsAsync()"
+result object has a few properties.
+cancelled is a boolean property, 
+and if user doesn't select image cancelled is true.
+uri is the full path to image.
 
-import * as Location from 'expo-location';
-
-let { status } = await Location.requestForegroundPermissionsAsync();
-if (status !== 'granted') {
-  console.log('Permission to access location was denied');
-  return;
-}
-
-  [CAMERA]: 'expo-camera',
-  [CAMERA_ROLL]: 'expo-media-library',
-  [MEDIA_LIBRARY]: 'expo-media-library',
-  [MEDIA_LIBRARY_WRITE_ONLY]: 'expo-media-library',
-  [AUDIO_RECORDING]: 'expo-av',
-  [LOCATION]: 'expo-location',
-  [USER_FACING_NOTIFICATIONS]: 'expo-notifications',
-  [NOTIFICATIONS]: 'expo-notifications',
-  [CONTACTS]: 'expo-contacts',
-  [CALENDAR]: 'expo-calendar',
-  [REMINDERS]: 'expo-calendar',
-  [SYSTEM_BRIGHTNESS]: 'expo-brightness',
-  [MOTION]: 'expo-sensors',
-The request method entirely uses the request API.
-
+Using native features is easy with expo,
+you just have to install a library 
+that imports an object with few methods. 
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
+import { Button, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import Screen from "./app/components/Screen";
 
 export default function App() {
+  const [imageUri, setImageUri] = useState();
+
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert("You need to enable permission to access library.");
@@ -50,7 +31,22 @@ export default function App() {
   useEffect(() => {
     requestPermission();
   }, []);
-  return <Screen></Screen>;
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.cancelled) setImageUri(result.uri);
+    } catch (error) {
+      console.log("Error reading an image", error);
+    }
+  };
+
+  return (
+    <Screen>
+      <Button title="Select Image" onPress={selectImage} />
+      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+    </Screen>
+  );
 }
 
 // <View
