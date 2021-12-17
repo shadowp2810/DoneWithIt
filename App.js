@@ -1,35 +1,18 @@
 /*
-Now we build a component for selecting multiple images.
-We build ImageInputList.
-We want to lay it horizontally so flexDirection: row.
-The props it takes should be a collection of imageUris.
-In the view each array value is mapped to an ImageInput.
-Currently we don't have functionality to replace an image,
-so if we have an image inside an image input and change event is raised,
-that means user has deleted that image,
-so here inside view where values are mapped, we should handle deletion.
-Just like the ImageInput component we don't want to maintain local state here,
-we want to have the state somewhere else, inside our form.
-So we add two more props, onRemoveImage, onAddImage,
-so adding or removing an image, rasises three events.
-Since we are using the map method we set the key prop to uri of the image.
-After this ImageInput, we are always going to have an ImageInput to add new images.
-We rename state imageUri to imageUris as we are dealing with multiple.
+Currently adding too many images has it leaving the frame,
+so we add a scrollview, which is vertical by default,
+so we set it to horizontal={true} or just horizontal.
 
-Whenever you see pattern
-        onAddImage={uri=>handleAdd(uri)}
-where you have a parameter, that you call and function and pass a parameter,
-you can simplify code to simply use name of function.
-        onAddImage={handleAdd}
+To call a method on component ScrollView, we use a refhook,
+using refhook we get a reference to instance of that component.
+  const scrollView = useRef();
+In ScrollView we set prop
+        ref={scrollView}
+and 
+        onContentSizeChange={() => scrollView.current.scrollToEnd()}
 
-Using spread operator we take copy of aray and add uri
-    setImageUris([...imageUris, uri])
-
-To get all uris exept the one we get
-    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
-
-    To add padding between the items in list,
-    we wrap it in a view, and move the key prop to it because it is the container.
+ScrollView take up whole screen,
+so we wrap it in a view. 
 */
 
 import { StatusBar } from "expo-status-bar";
