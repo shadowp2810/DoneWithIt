@@ -1,42 +1,46 @@
 /*
-To create a code snippet,
-go to Preferene->User Snippet->{The language we want}
-in our case its javascript,
-then 
-{
-  "Function Component": {
-    "prefix": "rnfc",
-    "body": [
-      "import React from 'react';",
-      "import { View, StyleSheet } from 'react-native';",
-      "",
-      "function ${TM_FILENAME_BASE}(props) {",
-      "  return (",
-      "    <View style={styles.container}>$0</View>",
-      "  );",
-      "}",
-      "",
-      "const styles = StyleSheet.create({",
-      "  container: {}",
-      "})",
-      "",
-      "export default ${TM_FILENAME_BASE};"
-    ]
-  }
-where ${TM_FILENAME_BASE} replaces with filename automatically,
-and $0 is where we want cursor to be,
-and "", for empty line space.
+React Native doesn't give us much in terms of accessing native device feautures.
+
+https://reactnative.dev/docs/alert
+On left side we see the core APIs
+and there aren't many.
+The other feautres like camera, context and location are not avaiable in core react native.
+
+With 3rd party libraries from react native community like react native image picker
+and with this we can access the camera.
+Most of these require additional setup for ios or android projects.
+Our options are to eject the reactnative app and continue work for each platform,
+or we can use expo libraries.
+Expo is a great productivity tool,
+we can get more done in less time.
+
+https://docs.expo.dev/versions/latest/
+Calender, Camera, Contacts and so on.
+These components are easy to use and well documented.
+This list keeps growing as expo is under active development.
+
+Before using any component have a look at Platform Compatibility table.
+
+https://docs.expo.dev/versions/v44.0.0/sdk/imagepicker/
+expo-image-picker provides access to the system's UI
+for selecting images and videos from the phone's library or taking a photo with the camera.
+
+`expo install expo-image-picker`
+
+This component is copatible on all platforms.
+
+When we want to acess sensitive information for a user,
+we need thier permission, which we will look at next.
+
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
 import ListingEditScreen from "./app/screens/ListingEditScreen";
-import MessagesScreen from "./app/screens/MessagesScreen";
-import AccountScreen from "./app/screens/AccountScreen";
 
 export default function App() {
-  return <AccountScreen />;
+  return <ListingEditScreen />;
 }
 
 // <View
