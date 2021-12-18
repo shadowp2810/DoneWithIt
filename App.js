@@ -1,43 +1,78 @@
 /*
-https://reactnavigation.org/docs/hello-react-navigation
-First we install stack navigator library.
-`npm install @react-navigation/native-stack@5.3.5`
-Each navigator is implemented in a seperate library.
+const Tweets = ({ navigation }) => (
+      onPress={() => navigation.navigate("TweetDetails")}
+We can read about the navigation prop we are using here
+https://reactnavigation.org/docs/navigation-prop
 
-const Stack = createNativeStackNavigator();
-where Stack has Group, Navigator and Screen
+Below are common across all navigators
+navigation
+navigate - go to another screen, figures out the action it needs to take to do it
+reset - wipe the navigator state and replace it with a new route
+goBack - close active screen and move back in the stack
+setParams - make changes to route's params
+dispatch - send an action object to update the navigation state
+setOptions - update the screen's options
+isFocused - check whether the screen is focused
+addListener - subscribe to updates to events from the navigators
 
-This component is defined in the stack library
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+For Stack navigator we have
+navigation
+replace - replace the current route with a new one
+push - push a new route onto the stack
+pop - go back in the stack
+popToTop - go to the top of the stack
 
-This component is defined in the main library
-import { NavigationContainer } from '@react-navigation/native';
+For Tab navigators we have
+navigation
+jumpTo - go to a specific screen in the tab navigator
 
-Other navigators like tab and drawer have same structure.
+the navigate methof makes sure we have a single instance 
+of this route or screen on our stack.
+Within Tweets if we did
+    <Button title="View Tweet" onPress={() => navigation.navigate("Tweets")} />
+It would do nothing.
+But if we used push method instead,
+    <Button title="View Tweet" onPress={() => navigation.push("Tweets")} />
+it would take us to a new screen of the same with a back button.
 
-Instead of rendering specific screens like tweets or tweet details,
-we are going to render StackNavigator.
-This component knows how to navigate between different screens.
+This navigation prop is only available on our screen components.
+That is in Stack.Screen,
+so if we Tweets had a child component, 
+that component wold not have access to navigation prop.
+But we can use navigation hook to get access to navigation object.
 
-Because we use a StacNavigator we get a header on top,
-and we can fully customize this. 
-Background, foreground, style of text, add buttons to right or left.
+const Link = () => {
+  const navigation = useNavigation();
+  return (
+    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+  );
+};
 
-Currently we need to reload app when we swap the order of StackScreens,
-because the navigator is maintained in navigation state.
+where Link can have {navigation} prop so we use hook useNavigation.
+
+and we can use <Link/> to replace the button in Tweets.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import AppText from "./app/components/Text";
 import Screen from "./app/components/Screen";
 
-const Tweets = () => (
+const Link = () => {
+  const navigation = useNavigation();
+  return (
+    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+  );
+};
+
+const Tweets = ({ navigation }) => (
   <Screen>
     <AppText>Tweets</AppText>
+    <Link />
   </Screen>
 );
 
