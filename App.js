@@ -1,34 +1,15 @@
 /*
-We build FormImagePicker which uses formik to manage state.
-We use setFieldValue, which takes two params, to update state.
+Use Yup to validate Image 
+from FormImagePicker in ListingEditScreen.
 */
 
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
-import Screen from "./app/components/Screen";
-import ImageInputList from "./app/components/ImageInputList";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
-  const [imageUris, setImageUris] = useState([]);
-
-  const handleAdd = (uri) => {
-    setImageUris([...imageUris, uri]);
-  };
-
-  const handleRemove = (uri) => {
-    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
-  };
-
-  return (
-    <Screen>
-      <ImageInputList
-        imageUris={imageUris}
-        onAddImage={handleAdd}
-        onRemoveImage={handleRemove}
-      />
-    </Screen>
-  );
+  return <ListingEditScreen />;
 }
 
 // <View
