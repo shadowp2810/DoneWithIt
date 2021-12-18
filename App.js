@@ -1,6 +1,6 @@
 /*
-Use Yup to validate Image 
-from FormImagePicker in ListingEditScreen.
+`expo install expo-location`
+
 */
 
 import { StatusBar } from "expo-status-bar";
