@@ -1,32 +1,18 @@
 /*
-We can apply styles to the header using the options prop in Stack.Screen.
+Now we will see how to add tabs to our app.
+https://reactnavigation.org/docs/bottom-tab-navigator
+`npm install @react-navigation/bottom-tabs@5.4.4`
+We need to install it because each navigator is its own library.
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
+Tab has Group, Navigator and Screen, just like Stack.
 
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={({ route }) => ({
-        title: route.params.id,
-        headerStyle: { backgroundColor: "tomato" },
-        headerShown: false,
-      })}
-    />
+In a <Tab.Navigator>, we have <Tab.Screen /> and each screen represents tab in our app.
 
-    But here the styles are only applied locally to that screen.
-    We can apply it globally.
-    In Stack.Navigator we set screenOptions prop with same params as with options. 
-
-  <Stack.Navigator
-    initialRouteName="Tweets"
-    screenOptions={{
-      headerStyle: { backgroundColor: "dodgerblue" },
-      headerTintColor: "white",
-    }}
-  >
-
-  And we can overide styles in individual Stack.Screen options within it.
-
-  We can find the parameters we can give to options prop here 
-  https://reactnavigation.org/docs/stack-navigator/#options
+And then we return 
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
 
 */
 
@@ -34,6 +20,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import AppText from "./app/components/Text";
@@ -88,10 +75,24 @@ const StackNavigator = () => (
   </Stack.Navigator>
 );
 
+const Account = () => (
+  <Screen>
+    <AppText>Account</AppText>
+  </Screen>
+);
+
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={Tweets} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
+
 export default function App() {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 }
