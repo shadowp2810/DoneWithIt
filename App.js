@@ -1,8 +1,9 @@
 /*
-We build the Auth Navigator.
-First we make a new directory navigation in app.
-All our navigation code will be encapsulated within this folder.
-
+We create a navigation theme.
+const { DefaultTheme } = require("@react-navigation/native");
+We spread to get all its properties.
+We overwrite colors, which is a complex object
+We copy all the properties in DefaultTheme, then overide some
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -16,6 +17,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./app/components/Text";
 import Screen from "./app/components/Screen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
 
 const Link = () => {
   const navigation = useNavigation();
@@ -100,7 +102,7 @@ const TabNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <AuthNavigator />
     </NavigationContainer>
   );
