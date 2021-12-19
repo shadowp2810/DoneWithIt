@@ -1,17 +1,26 @@
 /*
-The navigate method has an optional second parameter,
-where you can pass an object and in this object
-you can pass one or more key value pairs.
-You could pass the id of tweet or entire tweet object,
-and you can access this object in the target screen.
+Currently the title of screen is based on name of routes.
+If you want to change the name,
+the screen component has another prop called options,
+which we set to an object
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      options={{ title: "Tweet Details" }}
+    />
 
-We can acess this in our target screen.
-We have another special prop called route.
-So react navigation automatically 
-injects this prop to all components.
-If you are in the child component you don't have access to route prop,
-for there you will need route hook, which return same route object.
-    <AppText>TweetDetails {route.params.id} </AppText>
+And if we want to set it dynammically based on data in route parameters,
+we can set the options prop to a function that returns an object.
+Having a parathesis will have it be interpreted as a block of code,
+and we don't want a block of code here, we just want to return an object,
+so we wrap it in parenthesis.
+React navigation automatically injects the route prop here, so we can get it,
+and use it while setting title.
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      options={({ route }) => ({ title: route.params.id })}
+    />
 
 */
 
@@ -29,7 +38,7 @@ const Link = () => {
   return (
     <Button
       title="Click"
-      onPress={() => navigation.navigate("TweetDetails", { id: 1 })}
+      onPress={() => navigation.navigate("TweetDetails", { id: "1" })}
     />
   );
 };
@@ -50,7 +59,11 @@ const TweetDetails = ({ route }) => (
 const Stack = createNativeStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Tweets">
-    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      options={({ route }) => ({ title: route.params.id })}
+    />
     <Stack.Screen name="Tweets" component={Tweets} />
   </Stack.Navigator>
 );
