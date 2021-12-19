@@ -1,18 +1,30 @@
 /*
-Now we will see how to add tabs to our app.
-https://reactnavigation.org/docs/bottom-tab-navigator
-`npm install @react-navigation/bottom-tabs@5.4.4`
-We need to install it because each navigator is its own library.
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-const Tab = createBottomTabNavigator();
-Tab has Group, Navigator and Screen, just like Stack.
+Now we will style the tabs.
+The navigator component has an option called tabBarOptions -> screenOptions,
+The list of the options and their new name from v5 to v6 are follows:
 
-In a <Tab.Navigator>, we have <Tab.Screen /> and each screen represents tab in our app.
+activeBackgroundColor -> tabBarActiveBackgroundColor
+activeTintColor -> tabBarActiveTintColor
+allowFontScaling -> tabBarAllowFontScaling
+iconStyle -> tabBarIconStyle
+inactiveBackgroundColor -> tabBarInactiveBackgroundColor
+inactiveTintColor -> tabBarInactiveTintColor
+keyboardHidesTabBar -> tabBarHideOnKeyboard
+labelPosition -> tabBarLabelPosition
+labelStyle -> tabBarLabelStyle
+showLabel -> tabBarShowLabel
+style -> tabBarStyle
+tabStyle -> tabBarItemStyle
 
-And then we return 
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+For each tabScreen we can set the icon size to what we like
+or destructure the size recommended by react navigation and set that.
+We can also do same with color, which react navigation picks 
+based on what we set in screenOptions.
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        ),
+      }}
 
 */
 
@@ -22,6 +34,7 @@ import { Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppText from "./app/components/Text";
 import Screen from "./app/components/Screen";
@@ -83,8 +96,24 @@ const Account = () => (
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Feed" component={Tweets} />
+  <Tab.Navigator
+    screenOptions={{
+      tabBarActiveBackgroundColor: "tomato",
+      tabBarActiveTintColor: "white",
+      tabBarInactiveBackgroundColor: "#eee",
+      tabBarInactiveTintColor: "black",
+      // tabBarShowLabel: false,
+    }}
+  >
+    <Tab.Screen
+      name="Feed"
+      component={Tweets}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        ),
+      }}
+    />
     <Tab.Screen name="Account" component={Account} />
   </Tab.Navigator>
 );
