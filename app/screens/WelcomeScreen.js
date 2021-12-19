@@ -1,10 +1,11 @@
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import AppButton from "../components/Button";
+import AppText from "../components/Text";
 
 //rfs
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={10}
@@ -13,14 +14,14 @@ function WelcomeScreen(props) {
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text style={styles.tagline}>Sell What You Don't Need</Text>
+        <AppText style={styles.tagline}>Sell What You Don't Need</AppText>
       </View>
       <View style={styles.buttonsContainer}>
-        <AppButton title="Login" onPress={() => console.log("Login Tapped")} />
+        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
         <AppButton
           color="secondary"
           title="Register"
-          onPress={() => console.log("Register Tapped")}
+          onPress={() => navigation.navigate("Register")}
         />
       </View>
     </ImageBackground>

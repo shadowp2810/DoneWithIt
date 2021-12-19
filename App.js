@@ -1,10 +1,8 @@
 /*
-We can use Nested vavigators to have the tab bar take us to a stack navigator.
-Each tab can take us to a different stack navigator.
-We can name the stack navigators appropriately.
-The Feed tab takes us to FeedNavigator,
-the Account tab takes us to the AccountNavigator.
-We call this Nesting Navigators.
+We build the Auth Navigator.
+First we make a new directory navigation in app.
+All our navigation code will be encapsulated within this folder.
+
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -17,6 +15,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppText from "./app/components/Text";
 import Screen from "./app/components/Screen";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 const Link = () => {
   const navigation = useNavigation();
@@ -102,7 +101,7 @@ const TabNavigator = () => (
 export default function App() {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
