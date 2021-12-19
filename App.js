@@ -1,9 +1,7 @@
 /*
-We create a navigation theme.
-const { DefaultTheme } = require("@react-navigation/native");
-We spread to get all its properties.
-We overwrite colors, which is a complex object
-We copy all the properties in DefaultTheme, then overide some
+Now we build our tabs.
+In AppNavigator we have Listings, ListingEdit and Account tab screens.
+
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -18,6 +16,7 @@ import AppText from "./app/components/Text";
 import Screen from "./app/components/Screen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 const Link = () => {
   const navigation = useNavigation();
@@ -103,7 +102,7 @@ const TabNavigator = () => (
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 }

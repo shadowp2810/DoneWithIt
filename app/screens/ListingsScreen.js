@@ -20,7 +20,7 @@ const listings = [
   },
 ];
 
-function ListingScreen(props) {
+function ListingsScreen(props) {
   return (
     <Screen style={styles.screen}>
       <FlatList
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListingScreen;
+export default ListingsScreen;

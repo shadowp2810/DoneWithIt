@@ -1,5 +1,7 @@
-const { DefaultTheme } = require("@react-navigation/native");
-const { default: defaultStyles } = require("../config/defaultStyles");
+import React from "react";
+import DefaultTheme from "@react-navigation/native";
+
+import defaultStyles from "../config/defaultStyles";
 
 export default {
   //We spread to get all its properties.

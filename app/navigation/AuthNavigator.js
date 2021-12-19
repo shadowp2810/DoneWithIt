@@ -1,11 +1,9 @@
 import React from "react";
-const {
-  createNativeStackNavigator,
-} = require("@react-navigation/native-stack");
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const { default: LoginScreen } = require("../screens/LoginScreen");
-const { default: RegisterScreen } = require("../screens/RegisterScreen");
-const { default: WelcomeScreen } = require("../screens/WelcomeScreen");
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
