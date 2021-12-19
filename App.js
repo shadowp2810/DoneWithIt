@@ -1,26 +1,32 @@
 /*
-Currently the title of screen is based on name of routes.
-If you want to change the name,
-the screen component has another prop called options,
-which we set to an object
+We can apply styles to the header using the options prop in Stack.Screen.
+
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
-      options={{ title: "Tweet Details" }}
+      options={({ route }) => ({
+        title: route.params.id,
+        headerStyle: { backgroundColor: "tomato" },
+        headerShown: false,
+      })}
     />
 
-And if we want to set it dynammically based on data in route parameters,
-we can set the options prop to a function that returns an object.
-Having a parathesis will have it be interpreted as a block of code,
-and we don't want a block of code here, we just want to return an object,
-so we wrap it in parenthesis.
-React navigation automatically injects the route prop here, so we can get it,
-and use it while setting title.
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={({ route }) => ({ title: route.params.id })}
-    />
+    But here the styles are only applied locally to that screen.
+    We can apply it globally.
+    In Stack.Navigator we set screenOptions prop with same params as with options. 
+
+  <Stack.Navigator
+    initialRouteName="Tweets"
+    screenOptions={{
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+    }}
+  >
+
+  And we can overide styles in individual Stack.Screen options within it.
+
+  We can find the parameters we can give to options prop here 
+  https://reactnavigation.org/docs/stack-navigator/#options
 
 */
 
@@ -58,13 +64,27 @@ const TweetDetails = ({ route }) => (
 
 const Stack = createNativeStackNavigator();
 const StackNavigator = () => (
-  <Stack.Navigator initialRouteName="Tweets">
+  <Stack.Navigator
+    initialRouteName="Tweets"
+    screenOptions={{
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+    }}
+  >
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
-      options={({ route }) => ({ title: route.params.id })}
+      options={({ route }) => ({
+        title: route.params.id,
+      })}
     />
-    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      options={{
+        headerShown: false,
+      }}
+    />
   </Stack.Navigator>
 );
 
