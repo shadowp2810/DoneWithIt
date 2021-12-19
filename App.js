@@ -1,31 +1,10 @@
 /*
-Now we will style the tabs.
-The navigator component has an option called tabBarOptions -> screenOptions,
-The list of the options and their new name from v5 to v6 are follows:
-
-activeBackgroundColor -> tabBarActiveBackgroundColor
-activeTintColor -> tabBarActiveTintColor
-allowFontScaling -> tabBarAllowFontScaling
-iconStyle -> tabBarIconStyle
-inactiveBackgroundColor -> tabBarInactiveBackgroundColor
-inactiveTintColor -> tabBarInactiveTintColor
-keyboardHidesTabBar -> tabBarHideOnKeyboard
-labelPosition -> tabBarLabelPosition
-labelStyle -> tabBarLabelStyle
-showLabel -> tabBarShowLabel
-style -> tabBarStyle
-tabStyle -> tabBarItemStyle
-
-For each tabScreen we can set the icon size to what we like
-or destructure the size recommended by react navigation and set that.
-We can also do same with color, which react navigation picks 
-based on what we set in screenOptions.
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="home" size={size} color={color} />
-        ),
-      }}
-
+We can use Nested vavigators to have the tab bar take us to a stack navigator.
+Each tab can take us to a different stack navigator.
+We can name the stack navigators appropriately.
+The Feed tab takes us to FeedNavigator,
+the Account tab takes us to the AccountNavigator.
+We call this Nesting Navigators.
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -63,7 +42,7 @@ const TweetDetails = ({ route }) => (
 );
 
 const Stack = createNativeStackNavigator();
-const StackNavigator = () => (
+const FeedNavigator = () => (
   <Stack.Navigator
     initialRouteName="Tweets"
     screenOptions={{
@@ -76,6 +55,7 @@ const StackNavigator = () => (
       component={TweetDetails}
       options={({ route }) => ({
         title: route.params.id,
+        headerShown: true,
       })}
     />
     <Stack.Screen
@@ -103,11 +83,12 @@ const TabNavigator = () => (
       tabBarInactiveBackgroundColor: "#eee",
       tabBarInactiveTintColor: "black",
       // tabBarShowLabel: false,
+      headerShown: false,
     }}
   >
     <Tab.Screen
       name="Feed"
-      component={Tweets}
+      component={FeedNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <MaterialCommunityIcons name="home" size={size} color={color} />
