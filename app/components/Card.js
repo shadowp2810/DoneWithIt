@@ -11,11 +11,11 @@ import defaultStyles from "../config/defaultStyles";
 import AppText from "./Text";
 import AppHeading from "./Heading";
 
-function Card({ title, subTitle, image, onPress }) {
+function Card({ title, subTitle, imageUrl, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image style={styles.image} source={image} />
+        <Image style={styles.image} source={{ uri: imageUrl }} />
         <View style={styles.detailsContainer}>
           <AppHeading style={styles.title}>{title}</AppHeading>
           <AppText style={styles.subTitle}>{subTitle}</AppText>
