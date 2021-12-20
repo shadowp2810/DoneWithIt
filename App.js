@@ -1,18 +1,16 @@
 /*
-The first tab Listings, needs a stack navigator.
-We build FeedNavigator.
-In App Navigator we replace ListingsScreen with FeedNavigator.
-In card component we need to add the onPress prop,
-wrap the jsx in a touchable, and have onPress prop be whatever is defined to it,
-by its consumer which is the Listings Screen.
-Because we have registered Listing Screen with our navigator,
-we have access to navigation prop,
-and because ListingDetailsScreen is also registered to our navigator,
-we have access to route prop.
-  const listing = route.params;
-and we pass the listing details dynamically.
+We build the AccountNavigator
+and in AccountScreen we handle the onPress event for list item.
+We take the navigation prop, 
+add a targetscreen property to item,
+and add onPress prop to listitem
+              onPress={() => navigation.navigate(item.targetScreen)}
 
-We then set presentation mode to "modal" and hide header. 
+              
+Now we make the bottom tab bar preety.
+we build a NewListingButton component in navigation directory.
+In AppNavigator we set the onPress prop,
+
 
 */
 
