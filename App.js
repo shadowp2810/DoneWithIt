@@ -1,113 +1,25 @@
 /*
-We build the AccountNavigator
-and in AccountScreen we handle the onPress event for list item.
-We take the navigation prop, 
-add a targetscreen property to item,
-and add onPress prop to listitem
-              onPress={() => navigation.navigate(item.targetScreen)}
+We should get rid of hardcoded routings.
+If we have a typo our app isn't going to work,
+and the only way to find it is to test all features of app.
+And if tomorrow e decide to rename this route to something else,
+we have to rename all instances of this route.
+So we store all routes in a single place in app.
 
-              
-Now we make the bottom tab bar preety.
-we build a NewListingButton component in navigation directory.
-In AppNavigator we set the onPress prop,
-
+WE use uppercase letters to indicate its a constant,
+To prevent other modules from accidently modifying this property,
+we use Object.Freeze method,
+which ensured the object we pass here cannot be modified anywher in app,
 
 */
 
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
 
-import AppText from "./app/components/Text";
-import Screen from "./app/components/Screen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
-
-const Link = () => {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title="Click"
-      onPress={() => navigation.navigate("TweetDetails", { id: "1" })}
-    />
-  );
-};
-
-const Tweets = ({ navigation }) => (
-  <Screen>
-    <AppText>Tweets</AppText>
-    <Link />
-  </Screen>
-);
-
-const TweetDetails = ({ route }) => (
-  <Screen>
-    <AppText>TweetDetails {route.params.id} </AppText>
-  </Screen>
-);
-
-const Stack = createNativeStackNavigator();
-const FeedNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Tweets"
-    screenOptions={{
-      headerStyle: { backgroundColor: "dodgerblue" },
-      headerTintColor: "white",
-    }}
-  >
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={({ route }) => ({
-        title: route.params.id,
-        headerShown: true,
-      })}
-    />
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      options={{
-        headerShown: false,
-      }}
-    />
-  </Stack.Navigator>
-);
-
-const Account = () => (
-  <Screen>
-    <AppText>Account</AppText>
-  </Screen>
-);
-
-const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveBackgroundColor: "tomato",
-      tabBarActiveTintColor: "white",
-      tabBarInactiveBackgroundColor: "#eee",
-      tabBarInactiveTintColor: "black",
-      // tabBarShowLabel: false,
-      headerShown: false,
-    }}
-  >
-    <Tab.Screen
-      name="Feed"
-      component={FeedNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="home" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen name="Account" component={Account} />
-  </Tab.Navigator>
-);
 
 export default function App() {
   return (

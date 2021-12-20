@@ -3,6 +3,7 @@ import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import AppButton from "../components/Button";
 import AppText from "../components/Text";
+import routes from "../navigation/routes";
 
 //rfs
 function WelcomeScreen({ navigation }) {
@@ -17,11 +18,14 @@ function WelcomeScreen({ navigation }) {
         <AppText style={styles.tagline}>Sell What You Don't Need</AppText>
       </View>
       <View style={styles.buttonsContainer}>
-        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
+        <AppButton
+          title="Login"
+          onPress={() => navigation.navigate(routes.LOGIN)}
+        />
         <AppButton
           color="secondary"
           title="Register"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </View>
     </ImageBackground>
