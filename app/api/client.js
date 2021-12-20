@@ -26,8 +26,4 @@ CANCEL_ERROR     'CANCEL_ERROR'     ---           Request has been cancelled. On
 Api sause gives us standardized errors.
 */
 
-apiClient.get("/listings").then((response) => {
-  if (!response.ok) {
-    response.problem;
-  }
-});
+export default apiClient;
