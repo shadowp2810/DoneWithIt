@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.primary,
     borderRadius: 40,
     borderColor: defaultStyles.colors.white,
-    borderWidth: 10,
-    bottom: 20,
-    height: 80,
+    borderWidth: 5,
+    bottom: 23,
+    height: 70,
     justifyContent: "center",
-    width: 80,
+    width: 70,
   },
 });
 

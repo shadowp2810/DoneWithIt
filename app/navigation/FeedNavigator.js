@@ -1,23 +1,28 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 
 import ListingsScreen from "../screens/ListingsScreen";
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const FeedNavigator = () => (
   <Stack.Navigator
     screenOptions={{
-      presentation: "modal",
+      presentation: "transparentModal",
       headerShown: false,
+      gestureEnabled: true,
+      // cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
     }}
   >
     <Stack.Screen name="Listings" component={ListingsScreen} options={{}} />
     <Stack.Screen
       name="ListingDetails"
       component={ListingDetailsScreen}
-      options={{}}
+      options={{ presentation: "modal" }}
     />
   </Stack.Navigator>
 );

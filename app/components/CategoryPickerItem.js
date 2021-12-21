@@ -9,12 +9,16 @@ function CategoryPickerItem({ item, onPress }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Icon
-          backgroundColor={item.backgroundColor}
-          name={item.icon}
-          size={80}
-        />
-        <AppText style={[styles.text, { fontSize: 17 }]}>{item.label}</AppText>
+        <View style={{ alignItems: "center" }}>
+          <Icon
+            backgroundColor={item.backgroundColor}
+            name={item.icon}
+            size={80}
+          />
+          <AppText style={[styles.text, { fontSize: 16 }]}>
+            {item.label}
+          </AppText>
+        </View>
       </TouchableOpacity>
     </View>
   );

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 
 import defaultStyles from "../config/defaultStyles";
@@ -31,6 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.white,
     marginBottom: "5%",
     overflow: "hidden",
+    width: Platform.isPad ? "40%" : null,
+    height: Platform.isPad ? 390 : null,
+    marginHorizontal: Platform.isPad ? 10 : null,
   },
   image: {
     width: "100%",
